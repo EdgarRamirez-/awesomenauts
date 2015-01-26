@@ -10,6 +10,8 @@ game.PlayScreen = me.ScreenObject.extend({
        me.levelDirector.loadLevel("level01");
         // loads the level
 		
+        me.input.bindKey(me.input.KEY.RIGHT, "right");
+
 		var player = me.pool.pull("player", 0, 420, {});
 		me.game.world.addChild(player, 5);
 
