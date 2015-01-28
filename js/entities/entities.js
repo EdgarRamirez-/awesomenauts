@@ -25,6 +25,8 @@ game.PlayerEntity = me.Entity.extend({
      	//sets the position of my x by adding the velocity defined above in
      	//setVelocity() and multiplying it by me.timer.tick.
      	//me.timer.tick makes the movement look smooth
+     	//makkes the character have animation when he walks
+     	//flipX makes the character flip when not moing
      	this.body.vel.x += this.body.accel.x * me.timer.tick;
         this.flipX(true);
      }else{
