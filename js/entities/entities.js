@@ -16,7 +16,8 @@ game.PlayerEntity = me.Entity.extend({
 
          this.renderable.addAnimation("idle", [78]);
          this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
-  
+         this.renderable.addAnimation("attack", [], 80);
+
          this.renderable.setCurrentAnimation("idle");
   },
 
@@ -32,6 +33,11 @@ game.PlayerEntity = me.Entity.extend({
      }else{
      	this.body.vel.x = 0;    
      }
+
+     if (me.input.isKeyPressed("attack")) {
+     	
+     }
+
      
      if(this.body.vel.x !== 0) {
        if(!this.renderable.isCurrentAnimation("walk")){
@@ -67,13 +73,18 @@ game.PlayerBaseEntity = me.Entity.extend({
 	    this.health = 10;
 	    this.alwaysUpdate = true;
 	    this.body.onCollision = this.onCollision.bind(this);
-
+        console.log("init");
         this.type = "PlayerBaseEntity";
+	
+        this.renderable.addAnimation("idle", [0]);
+        this.renderable.addAnimation("broken", [1]);
+        this.renderable.setCurrentAnimation("idle");
 	},
 
 	update:function(delta){
         if(this.health<=0){
         	this.broken = true;
+            this.renderable.setCurrentAnimation("broken");
         }
 	    this.body.update(delta);
 
